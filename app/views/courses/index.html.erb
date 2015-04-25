@@ -1,0 +1,4 @@
+<% @courses.each do |c| %>
+   <%= link_to "#{c.id}. #{c.title}", course_path(c) %>
+   <br/>
+<% end %>

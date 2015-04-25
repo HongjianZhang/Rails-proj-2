@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422031300) do
+ActiveRecord::Schema.define(version: 20150425210442) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20150422031300) do
     t.string   "semester"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "course_id"
   end
+
+  add_index "comments", ["course_id"], name: "index_comments_on_course_id"
 
   create_table "courses", force: true do |t|
     t.string   "courseNumber"
