@@ -1,0 +1,15 @@
+<p>CourseName: <%= @course.courseNumber%> <%= @course.title%> </p>
+<h>Comments:</h>
+<% @comments.each do |c|%>
+<p> <%= c.content%></p>
+<p> <%= c.instructor%></p>
+<p> <%= c.semester%></p>
+<% end%>
+<%= simple_form_for Comment.new, :url => comments_path(@course) do |f| %>
+  <%= f.input :content %>
+  <%= f.input :instructor %>
+  <%= f.input :semester %>
+  <%= f.hidden_field :course_id, :value => @course.id%>
+  <br>
+  <%= f.button :submit %>
+<% end %>

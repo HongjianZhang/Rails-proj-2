@@ -3,8 +3,3 @@
 <p>Email: <%= @user.email if @user.email %></p>
 
 
-<% @user.comments.each do |comment|%>
-  	<%h4 = link_to comment.text, edit_comment_path(quit)%>	
-<% end %>
-
-
