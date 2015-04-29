@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 		@course = Course.find(params[:comment][:course_id])
 		if current_user == nil
       		flash[:error] = "You should sign in first"
-      		redirect_to redirect_to(@course)
+      		redirect_to(@course)
       		return
       	else
       		@comment.user = current_user 
