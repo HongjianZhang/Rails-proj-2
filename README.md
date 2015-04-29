@@ -8,8 +8,7 @@ User
 has name, email, follow_users and follow_courses
 certain Users are Administrators and they can delete comments created by others, and create new courses.
 Courses
-has courseNumber, title, description, and department
-courses has comments and can be followed
+has courseNumber, title, description, department, comments
 Comment
 has content, instructor and a semester
 
