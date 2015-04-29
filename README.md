@@ -1,50 +1,26 @@
-Rails Devise
-================
+Title: RailsDeCal Proj2
+Team Members: Luke Zhang, Kanstantsin Kastsevich, Shuotong Wu, Ron Bhatta
+Github Link: https://github.com/Shuotong/proj2
+Idea: The website that gathers all the Berkeley courses(CS so far) and allows the users to comment the course. If the user likes the course, he or she can follow it, and they can keep track of the last comment on the profile page. Also, if the current_user finds one of the user very knowledgable, he or she can follow this user. 
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+Models and Description:
+User
+has name, email, follow_users and follow_courses
+certain Users are Administrators and they can delete comments created by others, and create new courses.
+Courses
+has courseNumber, title, description, and department
+courses has comments and can be followed
+Comment
+has content, instructor and a semester
 
-This application was generated with the [rails_apps_composer](https://github.com/RailsApps/rails_apps_composer) gem
-provided by the [RailsApps Project](http://railsapps.github.io/).
+Features:
+Users can log in
+Admins can delete comments, and create new courses.
+Users can comment on courses
+Courses and comments can be followed
 
-Rails Composer is open source and supported by subscribers. Please join RailsApps to support development of Rails Composer.
-
-Problems? Issues?
------------
-
-Need help? Ask on Stack Overflow with the tag 'railsapps.'
-
-Your application contains diagnostics in the README file. Please provide a copy of the README file when reporting any issues.
-
-If the application doesn't work as expected, please [report an issue](https://github.com/RailsApps/rails_apps_composer/issues)
-and include the diagnostics.
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.2
-- Rails 4.1.6
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Division of Labor:
+Luke: Made users, follow the user
+Shuotong: Made comments
+Kanstantsin: Made courses, follow the course
+Ron: front end
