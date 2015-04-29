@@ -1,6 +1,19 @@
 <h3>Welcome</h3>
 <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
+<% if user_signed_in? && current_user.is_admin%>
+  <h2>New Course:</h2>
+  <%= simple_form_for @course do |f| %>
+    <%= f.input :courseNumber %>
+    <%= f.input :title %>
+    <%= f.input :department %>
+    <%= f.input :description, as: :text %>
+    <%= f.hidden_field :course_id, :value => @course.id%>
+    <br>
+    <%= f.button :submit %>
+  <% end %>
+<% end %>
 <% @courses.each do |c|%>
-	<p><%= link_to "#{c.id}. #{c.title}", course_path(c) %> <br/>
+	<p><%= link_to "#{c.id}. #{c.title} (#{c.courseNumber})", course_path(c) %> <br/>
 	<!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
 <% end %>
+

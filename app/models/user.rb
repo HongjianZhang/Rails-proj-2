@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :follows, foreign_key: :follower_id
   has_many :followed_users, through: :follows, source: :followed
+  has_many :coursefollows, foreign_key: :follower_id
+  has_many :followed_courses, through: :coursefollows, source: :followed
 
   has_many :followed_users_comments, through: :followed_users, source: :comments
 end

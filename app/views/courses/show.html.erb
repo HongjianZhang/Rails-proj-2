@@ -1,6 +1,14 @@
 <h1> CourseName: <%= @course.courseNumber%> <%= @course.title%> </h1>
 <h4> <%= @course.department %> </h4>
 <p> <%= @course.description %> <p/>
+<% if @follow %>
+	<p style="text-align:center;"><%= link_to "Unfollow", coursefollow_path(@follow), method: :delete%></p>
+<% else%>
+	<p style="text-align:center;">
+	<%= link_to "Follow", coursefollows_path(course_id: @course.id), method: :post%>
+	</p>
+<% end %>
+
 <h2>New Comment:</h2>
 <%= simple_form_for Comment.new, :url => comments_path(@course) do |f| %>
   <%= f.input :content %>

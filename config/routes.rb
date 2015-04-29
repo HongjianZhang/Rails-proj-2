@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :courses
   resources :comments 
   resources :follows, only: [:create, :destroy]
+  resources :coursefollows, only: [:create, :destroy]
 end

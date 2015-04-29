@@ -1,0 +1,2 @@
+module CoursefollowsHelper
+end

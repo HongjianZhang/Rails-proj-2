@@ -25,5 +25,13 @@
 	<p style="text-align:center;">on <%= link_to c.course.title, course_path(c.course)%>, by <%= link_to c.user.name, user_path(c.user)%></p>
 <% end %>
 
-
-
+<% if user_signed_in? %>
+	<h2 style="text-align:center; margin:20px; margin-top:100px;">Followed Courses</h2>
+	<% @user.followed_courses.each do |c| %>	
+		<h4 style="text-align:center;"> <%= link_to "#{c.title} (#{c.courseNumber})", course_path(c)%></h4>
+		<% if not c.comments.last.nil? %>
+		  <p style="text-align:center;"> <%= "Last Comment: #{c.comments.last.content}"%></p>
+		  <br/>
+		<% end %>
+	<% end %>
+<% end %>
