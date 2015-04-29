@@ -13,6 +13,9 @@
   <% end %>
 <% end %>
 <% @courses.each do |c|%>
-	<p><%= link_to "#{c.id}. #{c.title} (#{c.courseNumber})", course_path(c) %> <br/>
-	<!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
+  <p><%= link_to "#{c.id}. #{c.title} (#{c.courseNumber})", course_path(c) %> <br/>
+  <% if current_user.is_admin%>
+    <%= link_to "Delete course", course_path(c) :class => "button", :method => :delete%>
+  <% end%>
+  <!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
 <% end %>

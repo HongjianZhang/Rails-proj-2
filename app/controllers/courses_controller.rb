@@ -27,5 +27,8 @@ class CoursesController < ApplicationController
 	end
 
 	def destroy
+		course = Course.find(params[:id])
+		course.delete
+		redirect_to courses_path
 	end
 end

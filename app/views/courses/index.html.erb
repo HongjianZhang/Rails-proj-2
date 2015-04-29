@@ -14,6 +14,9 @@
 <% end %>
 <% @courses.each do |c|%>
 	<p><%= link_to "#{c.id}. #{c.title} (#{c.courseNumber})", course_path(c) %> <br/>
-	<!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
+	
+    <%= link_to "Delete course", course_path(c), :class => "button", :method => :delete%>
+  
+  <!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
 <% end %>
 
