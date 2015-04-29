@@ -1,10 +1,7 @@
-<p>CourseName: <%= @course.courseNumber%> <%= @course.title%> </p>
-<h>Comments:</h>
-<% @comments.each do |c|%>
-<p> <%= c.content%></p>
-<p> <%= c.instructor%></p>
-<p> <%= c.semester%></p>
-<% end%>
+<h1> CourseName: <%= @course.courseNumber%> <%= @course.title%> </h1>
+<h4> <%= @course.department %> </h4>
+<p> <%= @course.description %> <p/>
+<h2>New Comment:</h2>
 <%= simple_form_for Comment.new, :url => comments_path(@course) do |f| %>
   <%= f.input :content %>
   <%= f.input :instructor %>
@@ -13,3 +10,12 @@
   <br>
   <%= f.button :submit %>
 <% end %>
+
+<h2>Comments:</h2>
+<% @comments.each do |c|%>
+<h5> Instructor: <%= c.instructor%></h5>
+<h5> Semester: <%= c.semester%></h5>
+<p> Content: <%= c.content%></p>
+------------------------
+<% end %>
+
