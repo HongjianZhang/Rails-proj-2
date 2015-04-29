@@ -1,24 +1,29 @@
-<h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
+<h1 style="text-align:center; margin:100px; margin-bottom:20px;"><%= @user.name if @user.name %></h1>
+<h4 style="text-align:center; margin:100px; margin-top:20px;"><%= @user.comments.count %> comments posted</h4>
 <% if @follow %>
-	<%= link_to "Unfollow", follow_path(@follow), method: :delete%>
+	<p style="text-align:center;"><%= link_to "Unfollow", follow_path(@follow), method: :delete%></p>
 <% elsif current_user != @user %>
+	<p style="text-align:center;">
 	<%= link_to "Follow", follows_path(user_id: @user.id), method: :post%>
+	</p>
 <% end %>
 
-<h3>My Comments</h3>
+<h2 style="text-align:center; margin:20px;">Comments Posted</h2>
 
 <% if current_user.comments.first %>
 <% @user.comments.each do |comment|%>
-  	<p><%= link_to comment.content, edit_comment_path(comment)%></p>	
+  	<h4 style="text-align:center;">"<%= comment.content%>"</h4>	
+  	<p style="text-align:center;">on <%= link_to comment.course.title, course_path(comment.course)%></p>
 <% end %>
 <% else %>
-<h4>No comment yet</h4>
+<h2 style="text-align:center; margin:20px;">No comment yet</h2>
 <% end %>
 
-<h3>Followed Comments</h3>
-<% @user.followed_users_comments.each do |c| %>
-	<p><%= c.content%></p>
-	<p><%= link_to c.user.name, user_path(c.user)%></p>
+<h2 style="text-align:center; margin:20px; margin-top:100px;">Followed Comments</h2>
+<% @user.followed_users_comments.each do |c| %>	
+	<h4 style="text-align:center;">"<%= c.content%>"</h4>
+	<p style="text-align:center;">on <%= link_to c.course.title, course_path(c.course)%>, by <%= link_to c.user.name, user_path(c.user)%></p>
 <% end %>
+
+
 
