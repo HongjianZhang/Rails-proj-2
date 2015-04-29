@@ -1,12 +1,4 @@
 class CoursefollowsController < ApplicationController
-	def index
-    	if current_user
-      		@follows = current_user.followed_users_comments
-    	else
-      		redirect_to users_path
-    	end
-  	end
-
 	def create
 		followed = Course.find(params[:course_id])
 		follower = current_user
