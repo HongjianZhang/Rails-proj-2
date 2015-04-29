@@ -13,7 +13,7 @@
 <% if current_user.comments.first %>
 <% @user.comments.each do |comment|%>
   	<h4 style="text-align:center;">"<%= comment.content%>"</h4>	
-  	<p style="text-align:center;">on <%= link_to comment.course.title, course_path(comment.course)%></p>
+  	<p style="text-align:center;">on <%= link_to "#{comment.course.title} (#{comment.course.courseNumber})", course_path(comment.course)%></p>
 <% end %>
 <% else %>
 <h2 style="text-align:center; margin:20px;">No comment yet</h2>
