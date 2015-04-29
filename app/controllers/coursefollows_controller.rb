@@ -8,10 +8,16 @@ class CoursefollowsController < ApplicationController
   	end
 
 	def create
-		followed = Course.find(params[:course_id])
-		follower = current_user
-		Coursefollow.create(follower: follower, followed: followed)
-		redirect_to course_path(followed)
+		if current_user == nil
+      		flash[:error] = "You should sign in first"
+      		redirect_to user_registration_path
+      		return
+      	else
+		    followed = Course.find(params[:course_id])
+		    follower = current_user
+		    Coursefollow.create(follower: follower, followed: followed)
+		    redirect_to course_path(followed)
+		end
 	end
 
 	def destroy

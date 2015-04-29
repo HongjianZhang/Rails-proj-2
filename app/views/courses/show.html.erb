@@ -24,7 +24,12 @@
 <h3><%= link_to "#{c.user.name}", user_path(c.user_id) %></h3>
 <h5> Instructor: <%= c.instructor%></h5>
 <h5> Semester: <%= c.semester%></h5>
-<p> Content: <%= c.content%></p>
+<p>
+Content: "<%= c.content%>" 
+<% if current_user.is_admin %>
+    <%= link_to "Delete", comment_path(c), method: :delete%>
+<% end %> 
+</p>
 ------------------------
 <% end %>
 

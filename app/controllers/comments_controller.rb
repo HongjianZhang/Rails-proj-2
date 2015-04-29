@@ -20,4 +20,10 @@ class CommentsController < ApplicationController
 			redirect_to(@course)
 		end
 	end
+
+	def destroy
+		comment = Comment.find(params[:id])
+		comment.delete
+		redirect_to course_path(comment.course)
+	end
 end
