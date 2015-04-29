@@ -26948,3 +26948,14 @@ Processing by CoursesController#show as HTML
   Rendered layouts/_navigation.html.erb (0.9ms)
   Rendered layouts/_messages.html.erb (0.1ms)
 Completed 200 OK in 194ms (Views: 192.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-28 22:04:26 -0700
+Processing by VisitorsController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered visitors/index.html.erb within layouts/application (7.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (1.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 197ms (Views: 195.5ms | ActiveRecord: 0.4ms)
