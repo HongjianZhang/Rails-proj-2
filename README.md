@@ -11,6 +11,10 @@ Courses
 has courseNumber, title, description, department, comments
 Comment
 has content, instructor and a semester
+Follow
+following user, followed user
+Coursefollow
+following user, followed course
 
 Features:
 Users can log in
