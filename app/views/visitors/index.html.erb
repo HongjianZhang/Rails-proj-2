@@ -1,6 +1,6 @@
 <h3>Welcome</h3>
 <p><%= link_to 'Users:', users_path %> <%= User.count %> registered</p>
 <% @courses.each do |c|%>
-	<p><%= link_to "#{c.id}. #{c.title}", course_path(c) %> <br/>
+	<p><%= link_to "#{c.id}. #{c.title} (#{c.courseNumber})", course_path(c) %> <br/>
 	<!-- <%= link_to "Comment!", course_path(id: c.id), :class => "button", :method => :get %>--></p>
 <% end %>

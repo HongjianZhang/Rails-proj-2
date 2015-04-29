@@ -23819,3 +23819,814 @@ Processing by CoursesController#show as HTML
   Rendered layouts/_navigation.html.erb (1.0ms)
   Rendered layouts/_messages.html.erb (0.1ms)
 Completed 200 OK in 178ms (Views: 175.8ms | ActiveRecord: 0.3ms)
+  [1m[36m (1.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to DeviseCreateUsers (20150422010742)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar(255) DEFAULT '' NOT NULL, "encrypted_password" varchar(255) DEFAULT '' NOT NULL, "reset_password_token" varchar(255), "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar(255), "last_sign_in_ip" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (1.0ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150422010742"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to AddNameToUsers (20150422010744)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "users" ADD "name" varchar(255)[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150422010744"]]
+  [1m[36m (1.5ms)[0m  [1mcommit transaction[0m
+Migrating to CreateComments (20150422030141)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "comments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" text, "vote_count" integer, "instructor" varchar(255), "semester" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150422030141"]]
+  [1m[36m (1.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddAdminToUser (20150422031011)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "users" ADD "is_admin" boolean[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150422031011"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourses (20150422031300)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "courseNumber" varchar(255), "title" varchar(255), "department" varchar(255), "description" text, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150422031300"]]
+  [1m[36m (2.1ms)[0m  [1mcommit transaction[0m
+Migrating to AddUserIdToComment (20150424213647)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "comments" ADD "user_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150424213647"]]
+  [1m[36m (1.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateFollows (20150428042612)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mCREATE TABLE "follows" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "follower_id" integer, "followed_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150428042612"]]
+  [1m[36m (3.8ms)[0m  [1mcommit transaction[0m
+Migrating to AddCourseIdToComment (20150428050916)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mALTER TABLE "comments" ADD "course_id" integer[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150428050916"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (0.2ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS10"], ["created_at", "2015-04-29 04:38:27.014858"], ["department", "Computer Science"], ["description", "An introduction to the beauty and joy of computing.\n The history, social implications, great principles, and future of computing. Beautiful applications that have changed the world. \n How computing empowers discovery and progress in other fields. Relevance of computing to the student and society will be emphasized. \n Students will learn the joy of programming a computer using a friendly, graphical language, and will complete a substantial team programming project related to their interests."], ["title", "The Beauty and Joy of Computing"], ["updated_at", "2015-04-29 04:38:27.014858"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS61A"], ["created_at", "2015-04-29 04:38:27.024438"], ["department", "Computer Science"], ["description", "Introduction to programming and computer science. \n\tThis course exposes students to techniques of abstraction at several levels: (a) within a programming language, \n\tusing higher-order functions, manifest types, data-directed programming, and message-passing; (b) between programming languages,\n\tusing functional and rule-based languages as examples. It also relates these techniques to the practical problems of implementation\n\tof languages and algorithms on a von Neumann machine. There are several significant programming projects."], ["title", "Structure and Interpretation of Computer Programs"], ["updated_at", "2015-04-29 04:38:27.024438"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS61B"], ["created_at", "2015-04-29 04:38:27.028036"], ["department", "Computer Science"], ["description", "Fundamental dynamic data structures, including linear lists, queues, trees, and other linked structures; arrays strings, and hash tables. \n\tStorage management. Elementary principles of software engineering. Abstract data types. Algorithms for sorting and searching. Introduction to the Java programming language."], ["title", "Data Structures"], ["updated_at", "2015-04-29 04:38:27.028036"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS61C"], ["created_at", "2015-04-29 04:38:27.032145"], ["department", "Computer Science"], ["description", "The internal organization and operation of digital computers. Machine architecture, support for high-level languages (logic, arithmetic, instruction sequencing)\n and operating systems (I/O, interrupts, memory management, process switching). Elements of computer logic design. Tradeoffs involved in fundamental architectural design decisions."], ["title", "Machine Structures"], ["updated_at", "2015-04-29 04:38:27.032145"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS70"], ["created_at", "2015-04-29 04:38:27.036383"], ["department", "Computer Science"], ["description", "Logic, infinity, and induction; applications include undecidability and stable marriage problem. \n\tModular arithmetic and GCDs; applications include primality testing and cryptography. Polynomials; examples include error correcting codes and interpolation. \n\tProbability including sample spaces, independence, random variables, law of large numbers; examples include load balancing, existence arguments, Bayesian inference."], ["title", "Discrete Mathematics and Probability Theory"], ["updated_at", "2015-04-29 04:38:27.036383"]]
+  [1m[35m (2.8ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS C149"], ["created_at", "2015-04-29 04:38:27.040977"], ["department", "Computer Science"], ["description", "This course introduces students to the basics of models, analysis tools, and control for embedded systems operating in real time. Students learn how to combine physical processes with computation. Topics include models of computation, control, analysis and verification, interfacing with the physical world, mapping to platforms, and distributed embedded systems. The course has a strong laboratory component, with emphasis on a semester-long sequence of projects."], ["title", "Introduction to Embedded Systems"], ["updated_at", "2015-04-29 04:38:27.040977"]]
+  [1m[36m (2.9ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS160"], ["created_at", "2015-04-29 04:38:27.045276"], ["department", "Computer Science"], ["description", "The design, implementation, and evaluation of user interfaces. User-centered design and task analysis. Conceptual models and interface metaphors. Usability inspection and evaluation methods. Analysis of user study data. Input methods (keyboard, pointing, touch, tangible) and input models. Visual design principles. Interface prototyping and implementation methodologies and tools. Students will develop a user interface for a specific task and target user group in teams."], ["title", "User Interface Design and Development"], ["updated_at", "2015-04-29 04:38:27.045276"]]
+  [1m[35m (2.9ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS161"], ["created_at", "2015-04-29 04:38:27.049542"], ["department", "Computer Science"], ["description", "Introduction to computer security. Cryptography, including encryption, authentication, hash functions, cryptographic protocols, and applications. Operating system security, access control. Network security, firewalls, viruses, and worms. Software security, defensive programming, and language-based security. Case studies from real-world systems."], ["title", "Computer Security"], ["updated_at", "2015-04-29 04:38:27.049542"]]
+  [1m[36m (3.0ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS162"], ["created_at", "2015-04-29 04:38:27.053969"], ["department", "Computer Science"], ["description", "Basic concepts of operating systems and system programming. Utility programs, subsystems, multiple-program systems. Processes, interprocess communication, and synchronization. Memory allocation, segmentation, paging. Loading and linking, libraries. Resource allocation, scheduling, performance evaluation. File systems, storage devices, I/O systems. Protection, security, and privacy."], ["title", "Operating Systems and System Programming"], ["updated_at", "2015-04-29 04:38:27.053969"]]
+  [1m[35m (2.0ms)[0m  commit transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS164"], ["created_at", "2015-04-29 04:38:27.057456"], ["department", "Computer Science"], ["description", "Survey of programming languages. The design of modern programming languages. Principles and techniques of scanning, parsing, semantic analysis, and code generation. Implementation of compilers, interpreters, and assemblers. Overview of run-time organization and error handling."], ["title", "Programming Languages and Compilers"], ["updated_at", "2015-04-29 04:38:27.057456"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS168"], ["created_at", "2015-04-29 04:38:27.061069"], ["department", "Computer Science"], ["description", "This course is an introduction to the Internet architecture. We will focus on the concepts and fundamental design principles that have contributed to the Internet's scalability and robustness and survey the various protocols and algorithms used within this architecture. Topics include layering, addressing, intradomain routing, interdomain routing, reliable delivery, congestion control, and the core protocols (e.g., TCP, UDP, IP, DNS, and HTTP) and network technologies (e.g., Ethernet, wireless)."], ["title", "Introduction to the Internet: Architecture and Protocols"], ["updated_at", "2015-04-29 04:38:27.061069"]]
+  [1m[35m (2.4ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS169"], ["created_at", "2015-04-29 04:38:27.064834"], ["department", "Computer Science"], ["description", "Ideas and techniques for designing, developing, and modifying large software systems. Function-oriented and object-oriented modular design techniques, designing for re-use and maintainability. Specification and documentation. Verification and validation. Cost and quality metrics and estimation. Project team organization and management. Students will work in teams on a substantial programming project."], ["title", "Software Engineering"], ["updated_at", "2015-04-29 04:38:27.064834"]]
+  [1m[36m (2.8ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS170"], ["created_at", "2015-04-29 04:38:27.069149"], ["department", "Computer Science"], ["description", "Concept and basic techniques in the design and analysis of algorithms; models of computation; lower bounds; algorithms for optimum search trees, balanced trees and UNION-FIND algorithms; numerical and algebraic algorithms; combinatorial algorithms. Turing machines, how to count steps, deterministic and nondeterministic Turing machines, NP-completeness. Unsolvable and intractable problems."], ["title", "Efficient Algorithms and Intractable Problems"], ["updated_at", "2015-04-29 04:38:27.069149"]]
+  [1m[35m (3.0ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS172"], ["created_at", "2015-04-29 04:38:27.073751"], ["department", "Computer Science"], ["description", "Finite automata, Turing machines and RAMs. Undecidable, exponential, and polynomial-time problems. Polynomial-time equivalence of all reasonable models of computation. Nondeterministic Turing machines. Theory of NP-completeness: Cook's theorem, NP-completeness of basic problems. Selected topics in language theory, complexity and randomness."], ["title", "Computability and Complexity"], ["updated_at", "2015-04-29 04:38:27.073751"]]
+  [1m[36m (3.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS176"], ["created_at", "2015-04-29 04:38:27.078320"], ["department", "Computer Science"], ["description", "Algorithms and probabilistic models that arise in various computational biology applications: suffix trees, suffix arrays, pattern matching, repeat finding, sequence alignment, phylogenetics, genome rearrangements, hidden Markov models, gene finding, motif finding, stochastic context free grammars, RNA secondary structure. There are no biology prerequisites for this course, but a strong quantitative background will be essential."], ["title", "Algorithms for Computational Biology"], ["updated_at", "2015-04-29 04:38:27.078320"]]
+  [1m[35m (3.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS184"], ["created_at", "2015-04-29 04:38:27.083328"], ["department", "Computer Science"], ["description", "Techniques of modeling objects for the purpose of computer rendering: boundary representations, constructive solids geometry, hierarchical scene descriptions. Mathematical techniques for curve and surface representation. Basic elements of a computer graphics rendering pipeline; architecture of modern graphics display devices. Geometrical transformations such as rotation, scaling, translation, and their matrix representations. Homogeneous coordinates, projective and perspective transformations. Algorithms for clipping, hidden surface removal, rasterization, and anti-aliasing. Scan-line based and ray-based rendering algorithms. Lighting models for reflection, refraction, transparency."], ["title", "Foundations of Computer Graphics"], ["updated_at", "2015-04-29 04:38:27.083328"]]
+  [1m[36m (3.5ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS188"], ["created_at", "2015-04-29 04:38:27.088375"], ["department", "Computer Science"], ["description", "Ideas and techniques underlying the design of intelligent computer systems. Topics include search, game playing, knowledge representation, inference, planning, reasoning under uncertainty, machine learning, robotics, perception, and language understanding."], ["title", "Introduction to Artificial Intelligence"], ["updated_at", "2015-04-29 04:38:27.088375"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["courseNumber", "CS189"], ["created_at", "2015-04-29 04:38:27.092208"], ["department", "Computer Science"], ["description", "Theoretical foundations, algorithms, methodologies, and applications for machine learning. Topics may include supervised methods for regression and classication (linear models, trees, neural networks, ensemble methods, instance-based methods); generative and discriminative probabilistic models; Bayesian parametric learning; density estimation and clustering; Bayesian networks; time series models; dimensionality reduction; programming projects covering a variety of real-world applications."], ["title", "Introduction to Machine Learning"], ["updated_at", "2015-04-29 04:38:27.092208"]]
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "courses" ("courseNumber", "created_at", "department", "description", "title", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["courseNumber", "CS194"], ["created_at", "2015-04-29 04:38:27.096520"], ["department", "Computer Science"], ["description", "Topics will vary semester to semester. See the Computer Science Division announcements."], ["title", "Special Topics"], ["updated_at", "2015-04-29 04:38:27.096520"]]
+  [1m[35m (2.6ms)[0m  commit transaction
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-28 21:38:46 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by VisitorsController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered visitors/index.html.erb within layouts/application (18.9ms)
+  Rendered layouts/_navigation_links.html.erb (4.4ms)
+  Rendered layouts/_navigation.html.erb (6.3ms)
+  Rendered layouts/_messages.html.erb (0.6ms)
+Completed 200 OK in 3621ms (Views: 3606.3ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-28 21:39:35 -0700
+Processing by VisitorsController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered visitors/index.html.erb within layouts/application (6.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 176ms (Views: 174.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-28 21:39:41 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '1')[0m
+  Rendered courses/show.html.erb within layouts/application (187.9ms)
+  Rendered layouts/_navigation_links.html.erb (1.3ms)
+  Rendered layouts/_navigation.html.erb (2.9ms)
+  Rendered layouts/_messages.html.erb (1.0ms)
+Completed 200 OK in 374ms (Views: 354.6ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/comments.1" for 127.0.0.1 at 2015-04-28 21:40:01 -0700
+Processing by CommentsController#create as 
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a+ZQBqpDN+TLxw/Es0F2mrka9CMvNvZXK8EimNdlXB0=", "comment"=>{"content"=>"Lol", "instructor"=>"lala", "semester"=>"fall3456", "course_id"=>"1"}, "commit"=>"Create Comment"}
+  [1m[35mCourse Load (0.2ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/courses/1
+Redirected to 
+Completed 500 Internal Server Error in 7ms
+
+AbstractController::DoubleRenderError - Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".:
+  actionpack (4.1.6) lib/action_controller/metal/redirecting.rb:68:in `redirect_to'
+  actionpack (4.1.6) lib/action_controller/metal/flash.rb:57:in `redirect_to'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:61:in `block in redirect_to'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:60:in `redirect_to'
+  app/controllers/comments_controller.rb:11:in `create'
+  actionpack (4.1.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.3) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.3) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.3) lib/thin/connection.rb:53:in `process'
+  thin (1.6.3) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.7) lib/eventmachine.rb:187:in `run'
+  thin (1.6.3) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.3) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.6) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.6) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.3.4) lib/spring/client/rails.rb:28:in `call'
+  spring (1.3.4) lib/spring/client/command.rb:7:in `call'
+  spring (1.3.4) lib/spring/client.rb:26:in `run'
+  spring (1.3.4) bin/spring:48:in `<top (required)>'
+  spring (1.3.4) lib/spring/binstub.rb:11:in `<top (required)>'
+  bin/spring:13:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/dafb99ff0e26d2b7/variables" for 127.0.0.1 at 2015-04-28 21:40:01 -0700
+
+
+Started POST "/comments.1" for 127.0.0.1 at 2015-04-28 21:40:12 -0700
+Processing by CommentsController#create as 
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a+ZQBqpDN+TLxw/Es0F2mrka9CMvNvZXK8EimNdlXB0=", "comment"=>{"content"=>"Lol", "instructor"=>"lala", "semester"=>"fall3456", "course_id"=>"1"}, "commit"=>"Create Comment"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/courses/1
+Redirected to 
+Completed 500 Internal Server Error in 3ms
+
+AbstractController::DoubleRenderError - Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".:
+  actionpack (4.1.6) lib/action_controller/metal/redirecting.rb:68:in `redirect_to'
+  actionpack (4.1.6) lib/action_controller/metal/flash.rb:57:in `redirect_to'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:61:in `block in redirect_to'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:60:in `redirect_to'
+  app/controllers/comments_controller.rb:11:in `create'
+  actionpack (4.1.6) lib/action_controller/metal/implicit_render.rb:4:in `send_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:35:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.3) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.3) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.3) lib/thin/connection.rb:53:in `process'
+  thin (1.6.3) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.7) lib/eventmachine.rb:187:in `run'
+  thin (1.6.3) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.3) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.6) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.6) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.3.4) lib/spring/client/rails.rb:28:in `call'
+  spring (1.3.4) lib/spring/client/command.rb:7:in `call'
+  spring (1.3.4) lib/spring/client.rb:26:in `run'
+  spring (1.3.4) bin/spring:48:in `<top (required)>'
+  spring (1.3.4) lib/spring/binstub.rb:11:in `<top (required)>'
+  bin/spring:13:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/f247268641c0de98/variables" for 127.0.0.1 at 2015-04-28 21:40:12 -0700
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-28 21:41:16 -0700
+Processing by VisitorsController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered visitors/index.html.erb within layouts/application (5.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 171ms (Views: 170.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2015-04-28 21:41:17 -0700
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/registrations/new.html.erb within layouts/application (12.8ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 186ms (Views: 182.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2015-04-28 21:41:32 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a+ZQBqpDN+TLxw/Es0F2mrka9CMvNvZXK8EimNdlXB0=", "user"=>{"name"=>"kk", "email"=>"k@k.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users"  WHERE "users"."email" = 'k@k.com' LIMIT 1[0m
+Binary data inserted for `string` type on column `encrypted_password`
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "name", "updated_at") VALUES (?, ?, ?, ?, ?)  [["created_at", "2015-04-29 04:41:32.253797"], ["email", "k@k.com"], ["encrypted_password", "$2a$10$71FoZNZoPlzCtoxUsI8YtuNF1rZap4GQ1iJQJx3U.gnLrK4HHuY2G"], ["name", "kk"], ["updated_at", "2015-04-29 04:41:32.253797"]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+Binary data inserted for `string` type on column `current_sign_in_ip`
+Binary data inserted for `string` type on column `last_sign_in_ip`
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "users" SET "current_sign_in_at" = ?, "current_sign_in_ip" = ?, "last_sign_in_at" = ?, "last_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = 1[0m  [["current_sign_in_at", "2015-04-29 04:41:32.263233"], ["current_sign_in_ip", "127.0.0.1"], ["last_sign_in_at", "2015-04-29 04:41:32.263233"], ["last_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2015-04-29 04:41:32.264078"]]
+  [1m[35m (2.3ms)[0m  commit transaction
+Redirected to http://localhost:3000/users
+Completed 302 Found in 134ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2015-04-28 21:41:32 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/_user.html.erb (0.8ms)
+  Rendered users/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (1.0ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 193ms (Views: 177.4ms | ActiveRecord: 0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-04-28 21:42:15 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mFollow Load (0.2ms)[0m  SELECT  "follows".* FROM "follows"  WHERE "follows"."followed_id" = 1 AND "follows"."follower_id" = 1  ORDER BY "follows"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments"  WHERE "comments"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  ORDER BY "comments"."id" ASC LIMIT 1  [["user_id", 1]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments" INNER JOIN "users" ON "comments"."user_id" = "users"."id" INNER JOIN "follows" ON "users"."id" = "follows"."followed_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (85.4ms)
+  Rendered layouts/_navigation_links.html.erb (0.4ms)
+  Rendered layouts/_navigation.html.erb (2.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 274ms (Views: 260.3ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2015-04-28 21:43:57 -0700
+Processing by VisitorsController#index as HTML
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "users"
+  [1m[36mCourse Load (0.4ms)[0m  [1mSELECT "courses".* FROM "courses"[0m
+  Rendered visitors/index.html.erb within layouts/application (6.7ms)
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (1.4ms)
+  Rendered layouts/_navigation.html.erb (2.2ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 190ms (Views: 188.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/courses/1" for 127.0.0.1 at 2015-04-28 21:43:59 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE (course_id = '1')
+  Rendered courses/show.html.erb within layouts/application (11.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 194ms (Views: 191.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:44:08 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  Rendered courses/show.html.erb within layouts/application (8.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 184ms (Views: 182.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/comments.2" for 127.0.0.1 at 2015-04-28 21:44:27 -0700
+Processing by CommentsController#create as 
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a+ZQBqpDN+TLxw/Es0F2mrka9CMvNvZXK8EimNdlXB0=", "comment"=>{"content"=>"Love it", "instructor"=>"John DeNero", "semester"=>"Fall2014", "course_id"=>"2"}, "commit"=>"Create Comment"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "comments" ("content", "course_id", "created_at", "instructor", "semester", "updated_at", "user_id") VALUES (?, ?, ?, ?, ?, ?, ?)  [["content", "Love it"], ["course_id", 2], ["created_at", "2015-04-29 04:44:27.368112"], ["instructor", "John DeNero"], ["semester", "Fall2014"], ["updated_at", "2015-04-29 04:44:27.368112"], ["user_id", 1]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/courses/2
+Completed 302 Found in 15ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:44:27 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.6ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered courses/show.html.erb within layouts/application (17.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.6ms)
+  Rendered layouts/_navigation.html.erb (2.4ms)
+  Rendered layouts/_messages.html.erb (0.2ms)
+Completed 200 OK in 222ms (Views: 217.7ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:44:30 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered courses/show.html.erb within layouts/application (11.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 213ms (Views: 211.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:44:35 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered courses/show.html.erb within layouts/application (10.0ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (1.0ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 172ms (Views: 169.6ms | ActiveRecord: 0.5ms)
+  [1m[36mComment Load (0.3ms)[0m  [1mSELECT  "comments".* FROM "comments"   ORDER BY "comments"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:46:48 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  Rendered courses/show.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 7ms
+
+SyntaxError - syntax error, unexpected tIDENTIFIER, expecting ')'
+...k_to "#{c.user.name}" user_path(c.user_id) );@output_buffer....
+...                               ^:
+  app/views/courses/show.html.erb:16:in `'
+  actionview (4.1.6) lib/action_view/template.rb:297:in `compile'
+  actionview (4.1.6) lib/action_view/template.rb:245:in `block (2 levels) in compile!'
+  activesupport (4.1.6) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.6) lib/action_view/template.rb:339:in `instrument'
+  actionview (4.1.6) lib/action_view/template.rb:244:in `block in compile!'
+  actionview (4.1.6) lib/action_view/template.rb:232:in `compile!'
+  actionview (4.1.6) lib/action_view/template.rb:144:in `block in render'
+  activesupport (4.1.6) lib/active_support/notifications.rb:161:in `instrument'
+  actionview (4.1.6) lib/action_view/template.rb:339:in `instrument'
+  actionview (4.1.6) lib/action_view/template.rb:143:in `render'
+  actionview (4.1.6) lib/action_view/renderer/template_renderer.rb:55:in `block (2 levels) in render_template'
+  actionview (4.1.6) lib/action_view/renderer/abstract_renderer.rb:38:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionview (4.1.6) lib/action_view/renderer/abstract_renderer.rb:38:in `instrument'
+  actionview (4.1.6) lib/action_view/renderer/template_renderer.rb:54:in `block in render_template'
+  actionview (4.1.6) lib/action_view/renderer/template_renderer.rb:62:in `render_with_layout'
+  actionview (4.1.6) lib/action_view/renderer/template_renderer.rb:53:in `render_template'
+  actionview (4.1.6) lib/action_view/renderer/template_renderer.rb:17:in `render'
+  actionview (4.1.6) lib/action_view/renderer/renderer.rb:42:in `render_template'
+  actionview (4.1.6) lib/action_view/renderer/renderer.rb:23:in `render'
+  actionview (4.1.6) lib/action_view/rendering.rb:99:in `_render_template'
+  actionpack (4.1.6) lib/action_controller/metal/streaming.rb:217:in `_render_template'
+  actionview (4.1.6) lib/action_view/rendering.rb:82:in `render_to_body'
+  actionpack (4.1.6) lib/action_controller/metal/rendering.rb:32:in `render_to_body'
+  actionpack (4.1.6) lib/action_controller/metal/renderers.rb:32:in `render_to_body'
+  actionpack (4.1.6) lib/abstract_controller/rendering.rb:25:in `render'
+  actionpack (4.1.6) lib/action_controller/metal/rendering.rb:16:in `render'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:41:in `block (2 levels) in render'
+  activesupport (4.1.6) lib/active_support/core_ext/benchmark.rb:12:in `block in ms'
+  /Users/kkastsevich/.rvm/rubies/ruby-2.1.2/lib/ruby/2.1.0/benchmark.rb:294:in `realtime'
+  activesupport (4.1.6) lib/active_support/core_ext/benchmark.rb:12:in `ms'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:41:in `block in render'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:84:in `cleanup_view_runtime'
+  activerecord (4.1.6) lib/active_record/railties/controller_runtime.rb:25:in `cleanup_view_runtime'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:40:in `render'
+  actionpack (4.1.6) lib/action_controller/metal/implicit_render.rb:10:in `default_render'
+  actionpack (4.1.6) lib/action_controller/metal/implicit_render.rb:5:in `send_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:189:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rendering.rb:10:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:20:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:113:in `call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:229:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:166:in `block in halting'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:86:in `run_callbacks'
+  actionpack (4.1.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:31:in `block in process_action'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `block in instrument'
+  activesupport (4.1.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.1.6) lib/active_support/notifications.rb:159:in `instrument'
+  actionpack (4.1.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.1.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.1.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.1.6) lib/abstract_controller/base.rb:136:in `process'
+  actionview (4.1.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.1.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.1.6) lib/action_controller/metal.rb:232:in `block in action'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:82:in `dispatch'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:50:in `call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:73:in `block in call'
+  actionpack (4.1.6) lib/action_dispatch/journey/router.rb:59:in `call'
+  actionpack (4.1.6) lib/action_dispatch/routing/route_set.rb:678:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.5.2) lib/rack/etag.rb:23:in `call'
+  rack (1.5.2) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.5.2) lib/rack/head.rb:11:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/flash.rb:254:in `call'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.5.2) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.1.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.1.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:621:in `call'
+  activerecord (4.1.6) lib/active_record/migration.rb:380:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.1.6) lib/active_support/callbacks.rb:82:in `run_callbacks'
+  actionpack (4.1.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/remote_ip.rb:76:in `call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:84:in `protected_app_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:79:in `better_errors_call'
+  better_errors (2.1.1) lib/better_errors/middleware.rb:57:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.6) lib/rails/rack/logger.rb:20:in `call'
+  quiet_assets (1.1.0) lib/quiet_assets.rb:27:in `call_with_quiet_assets'
+  actionpack (4.1.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.6) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.6) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.6) lib/rails/engine.rb:514:in `call'
+  railties (4.1.6) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  thin (1.6.3) lib/thin/connection.rb:86:in `block in pre_process'
+  thin (1.6.3) lib/thin/connection.rb:84:in `pre_process'
+  thin (1.6.3) lib/thin/connection.rb:53:in `process'
+  thin (1.6.3) lib/thin/connection.rb:39:in `receive_data'
+  eventmachine (1.0.7) lib/eventmachine.rb:187:in `run'
+  thin (1.6.3) lib/thin/backends/base.rb:73:in `start'
+  thin (1.6.3) lib/thin/server.rb:162:in `start'
+  rack (1.5.2) lib/rack/handler/thin.rb:16:in `run'
+  rack (1.5.2) lib/rack/server.rb:264:in `start'
+  railties (4.1.6) lib/rails/commands/server.rb:69:in `start'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:81:in `block in server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:76:in `server'
+  railties (4.1.6) lib/rails/commands/commands_tasks.rb:40:in `run_command!'
+  railties (4.1.6) lib/rails/commands.rb:17:in `<top (required)>'
+  bin/rails:8:in `<top (required)>'
+  spring (1.3.4) lib/spring/client/rails.rb:28:in `call'
+  spring (1.3.4) lib/spring/client/command.rb:7:in `call'
+  spring (1.3.4) lib/spring/client.rb:26:in `run'
+  spring (1.3.4) bin/spring:48:in `<top (required)>'
+  spring (1.3.4) lib/spring/binstub.rb:11:in `<top (required)>'
+  bin/spring:13:in `<top (required)>'
+  bin/rails:3:in `<main>'
+
+
+
+Started POST "/__better_errors/e64c417c44974bff/variables" for 127.0.0.1 at 2015-04-28 21:46:49 -0700
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users"   ORDER BY "users"."id" ASC LIMIT 1[0m
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:48:50 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.2ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE (course_id = '2')[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered courses/show.html.erb within layouts/application (15.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered layouts/_navigation_links.html.erb (2.4ms)
+  Rendered layouts/_navigation.html.erb (4.0ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 228ms (Views: 225.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-04-28 21:48:53 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT  "follows".* FROM "follows"  WHERE "follows"."followed_id" = 1 AND "follows"."follower_id" = 1  ORDER BY "follows"."id" ASC LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "comments"  WHERE "comments"."user_id" = ?  [["user_id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT  "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  ORDER BY "comments"."id" ASC LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  [["user_id", 1]]
+  [1m[36mCourse Load (0.3ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" INNER JOIN "users" ON "comments"."user_id" = "users"."id" INNER JOIN "follows" ON "users"."id" = "follows"."followed_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (13.3ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (1.1ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 221ms (Views: 212.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-04-28 21:48:55 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mFollow Load (0.2ms)[0m  SELECT  "follows".* FROM "follows"  WHERE "follows"."followed_id" = 1 AND "follows"."follower_id" = 1  ORDER BY "follows"."id" ASC LIMIT 1
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM "comments"  WHERE "comments"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  ORDER BY "comments"."id" ASC LIMIT 1  [["user_id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" INNER JOIN "users" ON "comments"."user_id" = "users"."id" INNER JOIN "follows" ON "users"."id" = "follows"."followed_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.6ms)
+  Rendered layouts/_navigation.html.erb (1.6ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 217ms (Views: 208.3ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-04-28 21:50:28 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", "1"]]
+  [1m[36mFollow Load (0.1ms)[0m  [1mSELECT  "follows".* FROM "follows"  WHERE "follows"."followed_id" = 1 AND "follows"."follower_id" = 1  ORDER BY "follows"."id" ASC LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  SELECT COUNT(*) FROM "comments"  WHERE "comments"."user_id" = ?  [["user_id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT  "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  ORDER BY "comments"."id" ASC LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT "comments".* FROM "comments" INNER JOIN "users" ON "comments"."user_id" = "users"."id" INNER JOIN "follows" ON "users"."id" = "follows"."followed_id" WHERE "follows"."follower_id" = ?  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (5.6ms)
+  Rendered layouts/_navigation_links.html.erb (0.3ms)
+  Rendered layouts/_navigation.html.erb (0.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 182ms (Views: 174.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/courses/2" for 127.0.0.1 at 2015-04-28 21:50:31 -0700
+Processing by CoursesController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1[0m  [["id", 2]]
+  [1m[35mComment Load (0.2ms)[0m  SELECT "comments".* FROM "comments"  WHERE (course_id = '2')
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/show.html.erb within layouts/application (12.8ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1
+  Rendered layouts/_navigation_links.html.erb (1.1ms)
+  Rendered layouts/_navigation.html.erb (1.8ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 177ms (Views: 175.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2015-04-28 21:50:33 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = 1  ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "users".* FROM "users"  WHERE "users"."id" = ? LIMIT 1[0m  [["id", "1"]]
+  [1m[35mFollow Load (0.1ms)[0m  SELECT  "follows".* FROM "follows"  WHERE "follows"."followed_id" = 1 AND "follows"."follower_id" = 1  ORDER BY "follows"."id" ASC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mSELECT COUNT(*) FROM "comments"  WHERE "comments"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mComment Load (0.1ms)[0m  SELECT  "comments".* FROM "comments"  WHERE "comments"."user_id" = ?  ORDER BY "comments"."id" ASC LIMIT 1  [["user_id", 1]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments"  WHERE "comments"."user_id" = ?[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses"  WHERE "courses"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mComment Load (0.1ms)[0m  [1mSELECT "comments".* FROM "comments" INNER JOIN "users" ON "comments"."user_id" = "users"."id" INNER JOIN "follows" ON "users"."id" = "follows"."followed_id" WHERE "follows"."follower_id" = ?[0m  [["follower_id", 1]]
+  Rendered users/show.html.erb within layouts/application (4.7ms)
+  Rendered layouts/_navigation_links.html.erb (0.2ms)
+  Rendered layouts/_navigation.html.erb (0.9ms)
+  Rendered layouts/_messages.html.erb (0.1ms)
+Completed 200 OK in 187ms (Views: 181.0ms | ActiveRecord: 0.9ms)

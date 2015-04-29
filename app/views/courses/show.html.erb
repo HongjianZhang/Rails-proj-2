@@ -13,6 +13,7 @@
 
 <h2>Comments:</h2>
 <% @comments.each do |c|%>
+<h3><%= link_to "#{c.user.name}", user_path(c.user_id) %></h3>
 <h5> Instructor: <%= c.instructor%></h5>
 <h5> Semester: <%= c.semester%></h5>
 <p> Content: <%= c.content%></p>
