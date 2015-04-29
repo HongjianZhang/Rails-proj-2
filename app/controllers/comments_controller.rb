@@ -9,7 +9,9 @@ class CommentsController < ApplicationController
 		if current_user == nil
       		flash[:error] = "You should sign in first"
       		redirect_to redirect_to(@course)
-      		return 
+      		return
+      	else
+      		@comment.user = current_user 
     	end
 		if @comment.save
 			redirect_to(@course)
