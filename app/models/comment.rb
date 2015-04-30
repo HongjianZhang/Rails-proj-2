@@ -10,7 +10,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  user_id    :integer
-#
+#  Given status
 
 class Comment < ActiveRecord::Base
 	belongs_to :user
