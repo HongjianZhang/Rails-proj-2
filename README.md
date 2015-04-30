@@ -1,6 +1,6 @@
 Title: RailsDeCal Proj2
 
-Team Members: Luke Zhang, Kanstantsin Kastsevich, Shuotong Wu, Ron Bhatta
+Team Members: Luke Zhang, Kanstantsin Kastsevich, Shuotong Wu, Ron Bhatta (Arani Bhattacharyay)
 
 Github Link: https://github.com/Shuotong/proj2
 
@@ -34,4 +34,4 @@ Division of Labor:
 Luke: Made users, follow the user
 Shuotong: Made comments
 Kanstantsin: Made courses, follow the course
-Ron: front end
+Ron: Front End, Heroku Push
