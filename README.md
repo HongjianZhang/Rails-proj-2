@@ -13,25 +13,25 @@ has name, email, follow_users and follow_courses
 certain Users are Administrators and they can delete comments created by others, and create new courses.
 
 Courses
-has courseNumber, title, description, department, comments
+has courseNumber, title, description, department, comments.
 
 Comment
-has content, instructor and a semester
+has content, instructor and a semester.
 
 Follow
-following user, followed user
+following user, followed user.
 
 Coursefollow
-following user, followed course
+following user, followed course.
 
 Features:
-Users can log in
+Users can log in.
 Admins can delete comments, and create new courses.
-Users can comment on courses
-Courses and comments can be followed
+Users can comment on courses.
+Courses and comments can be followed.
 
 Division of Labor:
-Luke: Made users, follow the user
-Shuotong: Made comments
-Kanstantsin: Made courses, follow the course
-Ron: Front End, Heroku Push
+Luke: Made users, follow the user.
+Shuotong: Made comments.
+Kanstantsin: Made courses, follow the course.
+Ron: Front End, Heroku Push.
