@@ -30,3 +30,6 @@ group :production do
 end
 
 gem 'annotate', '~> 2.6.6'
+group :production do
+  gem 'rails_12factor'
+end
