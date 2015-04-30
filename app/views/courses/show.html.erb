@@ -26,10 +26,13 @@
 <h5> Semester: <%= c.semester%></h5>
 <p>
 Content: "<%= c.content%>" 
-<% if current_user.is_admin %>
+<% if current_user == nil%>
+  <% flash[:error] = @course.errors.full_messages.to_sentence %>
+<% else %> 
+  <% if current_user.is_admin %>
     <%= link_to "Delete", comment_path(c), method: :delete%>
-<% end %> 
+<% end %>
+<% end %>
 </p>
 ------------------------
 <% end %>
-
